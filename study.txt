@@ -1,0 +1,14 @@
+############使用Spring AOP来实现事物####################################
+1.Spring AOP代理实现事物管理
+1.1 配置事物管理器DataSourceTransactionManager
+1.2 配置Annotation驱动<tx:annotation-driven />
+
+注意事项：
+1.@Transactional 注解只应用到 public 方法
+2.自调用问题：同一类中的其他没有@Transactional 注解的方法内部调用有@Transactional 注解的方法，有@Transactional 注解的方法的事务被忽略，不会发生回滚
+
+
+
+
+
+参考：https://www.ibm.com/developerworks/cn/java/j-master-spring-transactional-use/index.html

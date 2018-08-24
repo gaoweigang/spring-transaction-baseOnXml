@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--配置事物由Annotation驱动，这样@Transactional注解才会生效-->
+	<tx:annotation-driven />
+
+    <!-- 自动扫描包，开启注解扫描 base-package属性：指定需要扫描的包,多个包之间使用,号隔开 a.b.c a.b.d a.b.e -->
+    <context:component-scan base-package="com.gwg">
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController"/>
+	</context:component-scan>
+
+
+
+	<!-- spring的属性加载器，加载properties文件中的属性 -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:config.properties</value>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+
+
+</beans>
